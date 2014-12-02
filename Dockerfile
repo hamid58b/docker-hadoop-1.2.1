@@ -1,4 +1,6 @@
 # Create an image to build Hadoop nativelibs
+# We are going back in Time to Hadoop 1.2.1
+# http://tecadmin.net/steps-to-install-hadoop-on-centosrhel-6/
 #
 # docker build -t sequenceiq/hadoop-nativelibs .
 
@@ -35,18 +37,9 @@ RUN curl http://www.eu.apache.org/dist/maven/maven-3/3.2.1/binaries/apache-maven
 ENV M2_HOME /usr/share/apache-maven-3.2.1
 ENV PATH $PATH:$M2_HOME/bin
 
-# hadoop
-RUN curl -s http://www.eu.apache.org/dist/hadoop/common/hadoop-2.6.0/hadoop-2.6.0-src.tar.gz | tar -xz -C /tmp/
 
-# protoc -ohhh
-RUN curl https://protobuf.googlecode.com/files/protobuf-2.5.0.tar.bz2 | bunzip2|tar -x -C /tmp
-RUN cd /tmp/protobuf-2.5.0 && ./configure
-RUN cd /tmp/protobuf-2.5.0 && make && make install
-ENV LD_LIBRARY_PATH /usr/local/lib
-ENV export LD_RUN_PATH /usr/local/lib
+RUN mkdir /opt/hadoop
+RUN curl -s http://apache.mesi.com.ar/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz | tar -xz -C /opt/hadoop
+RUN chown -R hadoop /opt/hadoop
+RUN cd /opt/hadoop/hadoop-1.2.1
 
-# build native libs
-RUN cd /tmp/hadoop-2.6.0-src && mvn package -Pdist,native -DskipTests -Dtar
-
-# get bintray helper
-#RUN curl -Lo /tmp/bintray-functions j.mp/bintray-functions && . /tmp/bintray-functions
