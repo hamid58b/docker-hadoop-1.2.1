@@ -40,6 +40,6 @@ ENV PATH $PATH:$M2_HOME/bin
 
 RUN mkdir /opt/hadoop
 RUN curl -s http://apache.mesi.com.ar/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz | tar -xz -C /opt/hadoop
-RUN chown -R hadoop /opt/hadoop
+RUN chown -R root /opt/hadoop
 RUN cd /opt/hadoop/hadoop-1.2.1
 
