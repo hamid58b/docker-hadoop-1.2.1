@@ -10,7 +10,7 @@ MAINTAINER SequenceIQ
 USER root
 
 # install dev tools
-RUN yum install -y curl which tar sudo openssh-server openssh-clients rsync bunzip2
+RUN yum install -y curl which tar sudo openssh-server openssh-clients rsync bunzip2 sshd
 
 # install hadoop nativelins tools
 RUN yum install -y gcc gcc-c++ autoconf automake libtool zlib-devel cmake
@@ -42,4 +42,9 @@ RUN mkdir /opt/hadoop
 RUN curl -s http://apache.mesi.com.ar/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz | tar -xz -C /opt/hadoop
 RUN chown -R root /opt/hadoop
 RUN cd /opt/hadoop/hadoop-1.2.1
+RUN ln -s /opt/hadoop/hadoop-1.2.1 /opt/hadoop/hadoop
+RUN /etc/init.d/sshd start
+
+
+
 
