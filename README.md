@@ -1,4 +1,4 @@
-docker-hadoop-build
+docker-hadoop-1.2.1
 ===================
 
 ## Build Apache Hadoop
@@ -8,23 +8,9 @@ This Docker image contains the build process of Hadoop 2.5.2 nativelibs. Also th
 
 ## Build the image
 ```
-docker build -t sequenceiq/hadoop-nativelibs .
-```
+docker build -t hughbrien/docker-hadoop-1.2.1 . 
 
 ## Run the container
 ```
-docker run -it --name hadoop-build sequenceiq/hadoop-nativelibs /bin/bash
+docker run -it --name hadoop-build hughbrien/docker-hadoop-1.2.1 /bin/bash
 ```
-
-## Run the container
-
-```
-docker run -it --name hadoop-build sequenceiq/hadoop-nativelibs /bin/bash
-```
-
-## Copy files from the container
-```
-docker cp hadoop-build:/tmp/hadoop-2.5.2-src/hadoop-dist/target/hadoop-2.5.2/lib/native/ DESTINATION
-```
-
-_Note: the name `hadoop-build` is specified at the time when launching the container using `--name hadoop-build`_
