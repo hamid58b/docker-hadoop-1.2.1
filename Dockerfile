@@ -10,7 +10,7 @@ MAINTAINER SequenceIQ
 USER root
 
 # install dev tools
-RUN yum install -y curl which tar sudo openssh-server openssh-clients rsync bunzip2 sshd
+RUN yum install -y curl which tar sudo openssh-server openssh-clients rsync bunzip2 sshd wget
 
 # install hadoop nativelins tools
 RUN yum install -y gcc gcc-c++ autoconf automake libtool zlib-devel cmake git unzip
