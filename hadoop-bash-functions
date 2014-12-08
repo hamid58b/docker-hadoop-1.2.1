@@ -19,11 +19,13 @@ USAGE
 
 
 run-hadoop-node(){
-
-docker run -d  --name hadoop${1}  -h hadoop${1}.host.net  centos:latest 
-
+  docker run -d  --name hadoop${1}  -h hadoop${1}.host.net  centos:latest 
 }
 
+run-hadoop-node-first()
+{
+  docker run -d -t -i  --name node${1} -p 50030:50030 -p 50070:50070 -p 50060:50060  hughbrien/docker-hadoop-1.2.1 
+}
 
 run-command() {
   CMD="$@"
