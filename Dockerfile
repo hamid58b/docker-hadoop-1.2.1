@@ -1,4 +1,5 @@
 # Create an hadoop Image
+# Create an hadoop Image
 
 FROM tianon/centos:6.5
 MAINTAINER SequenceIQ
@@ -24,8 +25,6 @@ RUN rm jdk-7u51-linux-x64.rpm
 ENV JAVA_HOME /usr/java/default
 ENV PATH $PATH:$JAVA_HOME/bin
 
-
-
 # devel tools
 RUN yum groupinstall "Development Tools" -y
 RUN yum install -y cmake zlib-devel openssl-devel
@@ -35,18 +34,16 @@ RUN curl http://www.eu.apache.org/dist/maven/maven-3/3.2.1/binaries/apache-maven
 ENV M2_HOME /usr/share/apache-maven-3.2.1
 ENV PATH $PATH:$M2_HOME/bin
 
-#java -Xbootclasspath/a:$JAVA_HOME/lib/tools.jar -jar /appdynamicsagent/javaagent.jar <PID>
-
-RUN cd /
-RUN git clone https://github.com/hughbrien/appdynamics-agent.git
-
 RUN mkdir /opt/hadoop
 RUN curl -s http://apache.mesi.com.ar/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz | tar -xz -C /opt/hadoop
 RUN chown -R root /opt/hadoop
 RUN cd /opt/hadoop/hadoop-1.2.1
 RUN ln -s /opt/hadoop/hadoop-1.2.1 /opt/hadoop/hadoop
-RUN /etc/init.d/sshd start
 
+
+RUN /etc/init.d/sshd start
+RUN cd /
+RUN git clone https://github.com/hughbrien/appdynamics-agent.git
 RUN export JAVA_HOME=/usr/java/default
 
 
