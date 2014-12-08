@@ -42,9 +42,19 @@ RUN ln -s /opt/hadoop/hadoop-1.2.1 /opt/hadoop/hadoop
 
 
 RUN /etc/init.d/sshd start
+
 RUN cd /
 RUN git clone https://github.com/hughbrien/appdynamics-agent.git
+
+RUN git clone https://github.com/hughbrien/docker-hadoop-1.2.1.git
+RUN cp docker-hadoop-1.2.1/*xml /opt/hadoop/hadoop/conf
+
 RUN export JAVA_HOME=/usr/java/default
+RUN export HADOOP_OPTS=-Djava.net.preferIPv4Stack=true
+
+RUN cd /opt/hadoop/hadoop
+RUN bin/hadoop namenode -format
+RUN cd / 
 
 
 
