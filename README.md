@@ -31,19 +31,17 @@ May have to run bin/hadoop namenode -format
 
 May also have to manually start /etc/init.d/sshd start
 
-
-
-
-
 ## Build the image
 ```
 docker build -t hughbrien/docker-hadoop-1.2.1 . 
+```
 
 ## Run the container
 ```
 docker run -d -i -t -p 50030:50030 -p 50070:50070 -p 50060:50060 --name "node1" hughbrien/docker-hadoop-1.2.1 /bin/bash
 ```
 
+## Open a Shell in the Container
+```
 docker exec -it  node2 /bin/bash
-
-docker run -d -i -t -p 50030:50030 -p 50070:50070 -p 50060:50060 --name "node1" hughbrien/docker-hadoop-1.2.1 /bin/bash
+```
