@@ -22,9 +22,9 @@ run-hadoop-node(){
   docker run -d  --name hadoop${1}  -h hadoop${1}.host.net  centos:latest 
 }
 
-run-hadoop-node-first()
+run-appd-hadoop-node()
 {
-  docker run -d -t -i  --name node${1} -p 50030:50030 -p 50070:50070 -p 50060:50060  hughbrien/docker-hadoop-1.2.1 
+docker run -d -i -t -p 50030:50030 -p 50070:50070 -p 50060:50060 --name node${1} hughbrien/docker-hadoop-1.2.1 /bin/bash
 }
 
 run-command() {
