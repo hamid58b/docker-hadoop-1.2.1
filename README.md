@@ -27,6 +27,9 @@ docker build -t <yourname>/docker-hadoop-1.2.1 .
 
 docker run -d -i -t -p 50030:50030 -p 50070:50070 -p 50060:50060 --name "node1" hughbrien/docker-hadoop-1.2.1 /bin/bash
 
+docker run -d -i -t -p 50030:50030 -p 50070:50070 -p 50060:50060 --name "node1" hughbrien/docker-hadoop-1.2.1 /bin/bash
+
+
 docker exec -it nodeX /bin/bash
 ```
 
