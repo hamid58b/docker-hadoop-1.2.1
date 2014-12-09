@@ -40,9 +40,6 @@ RUN chown -R root /opt/hadoop
 RUN cd /opt/hadoop/hadoop-1.2.1
 RUN ln -s /opt/hadoop/hadoop-1.2.1 /opt/hadoop/hadoop
 
-
-RUN /etc/init.d/sshd start
-
 RUN cd /
 RUN git clone https://github.com/hughbrien/appdynamics-agent.git
 
@@ -50,13 +47,21 @@ RUN git clone https://github.com/hughbrien/docker-hadoop-1.2.1.git
 RUN cp docker-hadoop-1.2.1/*xml /opt/hadoop/hadoop/conf
 RUN cp /docker-hadoop-1.2.1/hadoop-env.sh  /opt/hadoop/hadoop/conf/
 
-RUN export JAVA_HOME=/usr/java/default
-RUN export HADOOP_OPTS=-Djava.net.preferIPv4Stack=true
+RUN /etc/init.d/sshd start
+RUN /opt/hadoop/hadoop/bin/start-all.sh
+RUN cp /docker-hadoop-1.2.1/hadoop-env.sh /opt/hadoop/hadoop/conf
 
 RUN /opt/hadoop/hadoop/bin/hadoop namenode -format
 RUN cd / 
 
-wget http://www.gutenberg.org/ebooks/25665.epub.noimages?session_id=92c8b92a1db8f09df509d3a32ba744f545bfbf27
+RUN wget http://www.gutenberg.org/files/25665/25665.txt
+
+RUN /opt/hadoop/hadoop/bin/hadoop fs -mkdir /wordcount-in
+RUN /opt/hadoop/hadoop/bin/hadoop fs -mkdir /wordcount-out
+RUN /opt/hadoop/hadoop/bin/hadoop fs -copyFromLocal 25665.txt /wordcount-in
+
+RUN /opt/hadoop/hadoop/bin/hadoop jar /opt/hadoop/hadoop/ 
+
 
 
 
