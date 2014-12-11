@@ -39,6 +39,7 @@ RUN curl -s http://apache.mesi.com.ar/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.ta
 RUN chown -R root /opt/hadoop
 RUN cd /opt/hadoop/hadoop-1.2.1
 RUN ln -s /opt/hadoop/hadoop-1.2.1 /opt/hadoop/hadoop
+<<<<<<< HEAD
 
 RUN cd /
 RUN git clone https://github.com/hughbrien/appdynamics-agent.git
@@ -50,18 +51,4 @@ RUN cp /docker-hadoop-1.2.1/hadoop-env.sh  /opt/hadoop/hadoop/conf/
 RUN /etc/init.d/sshd start
 RUN /opt/hadoop/hadoop/bin/start-all.sh
 RUN cp /docker-hadoop-1.2.1/hadoop-env.sh /opt/hadoop/hadoop/conf
-
-RUN /opt/hadoop/hadoop/bin/hadoop namenode -format
-RUN cd / 
-
-RUN wget http://www.gutenberg.org/files/25665/25665.txt
-
-RUN /opt/hadoop/hadoop/bin/hadoop fs -mkdir /wordcount-in
-RUN /opt/hadoop/hadoop/bin/hadoop fs -mkdir /wordcount-out
-RUN /opt/hadoop/hadoop/bin/hadoop fs -copyFromLocal 25665.txt /wordcount-in
-
-RUN /opt/hadoop/hadoop/bin/hadoop jar /opt/hadoop/hadoop/ 
-
-
-
 
