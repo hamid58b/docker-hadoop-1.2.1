@@ -8,7 +8,7 @@ cd  /opt/hadoop/hadoop
 
 bin/hadoop jar hadoop-examples-1.2.1.jar  wordcount /wordcount-in /wordcount-out/run1
 
-
 /opt/hadoop/hadoop/bin/hadoop fs -copyFromLocal 25665.txt /wordcount-in
-:
+
+cd /
 
