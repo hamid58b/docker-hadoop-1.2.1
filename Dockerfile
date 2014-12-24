@@ -39,7 +39,6 @@ RUN curl -s http://apache.mesi.com.ar/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.ta
 RUN chown -R root /opt/hadoop
 RUN cd /opt/hadoop/hadoop-1.2.1
 RUN ln -s /opt/hadoop/hadoop-1.2.1 /opt/hadoop/hadoop
-<<<<<<< HEAD
 
 RUN cd /
 RUN git clone https://github.com/hughbrien/appdynamics-agent.git
