@@ -48,6 +48,4 @@ RUN cp docker-hadoop-1.2.1/*xml /opt/hadoop/hadoop/conf
 RUN cp /docker-hadoop-1.2.1/hadoop-env.sh  /opt/hadoop/hadoop/conf/
 
 RUN /etc/init.d/sshd start
-RUN /opt/hadoop/hadoop/bin/start-all.sh
-RUN cp /docker-hadoop-1.2.1/hadoop-env.sh /opt/hadoop/hadoop/conf
 
